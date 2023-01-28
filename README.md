@@ -71,7 +71,7 @@ For companies that manufacture, retail, basic materials, consumer goods,...
 For companies in the financial sector.
 
 Because companies in the financial sector are quite separate in nature.
-For example, the banking industry is an industry that uses capital to generate cash flow, so RStock currently does not provide a quick report template for these industries.
+For example, the banking industry is an industry that uses capital to generate cash flow, so RStockvn currently does not provide a quick report template for these industriedsđ
 
 About this kind of report I will add later
 #### Example
