@@ -11,7 +11,7 @@ DS = 'Report Finance of Companies in Vietnamese'
 
 #Setting
 setup(
-    name='RStock',
+    name='RStockvn',
     version='0.1.0',
     author='NGUYEN PHUC BINH',
     author_email='nguyenphucbinh67@gmail.com',
