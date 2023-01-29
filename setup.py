@@ -12,7 +12,7 @@ DS = 'Report Finance of Companies in Vietnamese'
 #Setting
 setup(
     name='RStockvn',
-    version='0.1.2',
+    version='0.1.20',
     author='NGUYEN PHUC BINH',
     author_email='nguyenphucbinh67@gmail.com',
     description=DS,
@@ -20,7 +20,7 @@ setup(
     long_description_content_type='text/markdown',
     packages=find_packages(),
     url="https://github.com/NPhucBinh/RStockvn",
-    install_requires=['pandas','requests','json'],
+    install_requires=['pandas','requests'],
     keywords=['RStockvn','rstockvn','report stock vn'],
     classifiers=[
         "Programming Language :: Python :: 3",
