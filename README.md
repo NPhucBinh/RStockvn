@@ -13,7 +13,9 @@ Currently, RStockvn has not yet supported the retrieval of information such as i
 
 Also you can refer to the library:'vnstock', written by Mr. Thinh Vu
 # User guide
-First you need to import the library by: import RStockvn as rpv or from RStockvn import *
+First you need to install RStockvn by:
+``pip install RStockvn`` or ``conda install RStockvn``
+To use you need to: ``import RStockvn as rpv`` or ``from RStockvn import *``
 
 ## a.Function to view stock adjusted price history
 This function will return the adjusted price history of the ticker, from dividend events.
