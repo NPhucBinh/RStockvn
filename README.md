@@ -78,3 +78,13 @@ About this kind of report I will add later
 ```
 baocaonhanh('HSG','TM','QUY')
 ```
+## Explore more:``historical_price_cp68(day,symbol)``
+The function looks at the price history of a stock code with the corresponding time of ``100``,``200``,``300``,``400``,``500`` and ``ALL``
+
+#### Example
+```
+historical_price_cp68(100,'HSG')
+```
+# Epilogue
+If you like the idea or want to add more suggestions about RStockvn. 
+Please send your comments to email: nguyenphucbinh67@gmail.com, thank you for testing RStockvn
