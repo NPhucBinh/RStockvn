@@ -365,15 +365,13 @@ def solieu_danso_vietstock(fromdate,todate):###HAMGETSOLIEUDANSO
     return bangls
 def solieu_GDP_vietstock(fromyear,fromQ,toyear,toQ):###HAMGETGDP
     asp,rtoken,tken=token()
-    fromQ=int(fromQ)
-    toQ=int(toQ)
-    fromyear=pd.to_datetime(fromyear)
-    toyear=pd.to_datetime(toyear)
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
     header={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0','Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
-    payload={'type':'3','fromYear':fromyear.year,'toYear':toyear.year,'from':fromQ,'to':toQ,'normTypeID':'43','__RequestVerificationToken': '{}'.format(tken)}
+    payload={'type':'3','fromYear':fromyear,'toYear':toyear,'from':fromQ,'to':toQ,'normTypeID':'43','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
     cov1=dict(ls.json())
     bangls=pd.DataFrame(cov1['data'])
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
     return bangls
+
+
