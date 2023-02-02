@@ -12,7 +12,7 @@ DS = 'Report Finance of Companies in Vietnamese and macro data - Lấy báo cáo
 #Setting
 setup(
     name='RStockvn',
-    version='1.0.3',
+    version='1.1.6',
     author='NGUYEN PHUC BINH',
     author_email='nguyenphucbinh67@gmail.com',
     description=DS,

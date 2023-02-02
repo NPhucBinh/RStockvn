@@ -9,7 +9,7 @@ The reason that I do RStockvn is to support the collection of basic data for ana
 The financial statements that RStockvn collects mainly come from websites: [Cổ phiếu 68](https://www.cophieu68.vn), [Cafef](https://cafef.vn).
 
 For the exchange rate, RStockvn collects at "exchangerate.host" if you have more interest or support for their project you can visit at:[Exchangerate](https://exchangerate.host/#/donate )
-### New update 1.1.3, now rstockvn can get macro data.
+### From update 1.0.3 onwards, you can used rstockvn to get macro data.
 The figures CPI, FDI, GDP, ... are taken from websites: [Vietstock](https://finance.vietstock.vn/du-lieu-vi-mo)
 
 Also you can refer to the library:'vnstock', written by Mr. Thinh Vu
@@ -135,12 +135,22 @@ To get data on credit in Vietnam you need to use the function ``solieu_tindung_v
 ```
 solieu_tindung_vietstock('2022-10-01','2023-02-01')
 ```
+
 ## 16.Get data on population, unemployment rate (Vietnam)
 To get data on population, unemployment rate you need to use the function ``solieu_danso_vietstock(fromdate,todate)``, ``fromdate`` is from the date you need to get the ``todate`` to the date you want to get the data.
 #### Example
 ```
 solieu_danso_vietstock('2022-10-01','2023-02-01')
 ```
+
+## 17.Get GDP index (Vietnam)
+To get the GDP index you need to use the ``solieu_GDP_vietstock(fromyear,fromQ,toyear,toQ)`` function. ``fromyear`` ``toyear`` are the year milestones to be taken, ``fromQ``, ``toQ`` is the quarters you choose.
+#### Example
+You want to get the GDP index from 2nd quarter 2020 to 3rd quarter 2022.
+```
+solieu_GDP_vietstock('2020','2','2022','3')
+```
+
 ## Explore more:``historical_price_cp68(day,symbol)``
 The function looks at the price history of a stock code with the corresponding time of ``100``,``200``,``300``,``400``,``500`` and ``ALL``
 
