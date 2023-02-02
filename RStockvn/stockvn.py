@@ -1,3 +1,5 @@
+# Copyright 2023 NPhucBinh @ GitHub
+# See LICENSE for details.
 import pandas as pd
 import requests
 import requests
