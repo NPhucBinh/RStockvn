@@ -9,7 +9,7 @@ The reason that I do RStockvn is to support the collection of basic data for ana
 The financial statements that RStockvn collects mainly come from websites: [Cổ phiếu 68](https://www.cophieu68.vn), [Cafef](https://cafef.vn).
 
 For the exchange rate, RStockvn collects at "exchangerate.host" if you have more interest or support for their project you can visit at:[Exchangerate](https://exchangerate.host/#/donate )
-### New update 0.1.3, now rstockvn can get macro data.
+### New update 1.0.3, now rstockvn can get macro data.
 The figures CPI, FDI, GDP, ... are taken from websites: [Vietstock](https://finance.vietstock.vn/du-lieu-vi-mo)
 
 Also you can refer to the library:'vnstock', written by Mr. Thinh Vu
