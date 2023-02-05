@@ -63,6 +63,10 @@ At the present time when accessing "exchangerate.host" can only get the history 
 ```
 exchange_currency('USD','VND','2022-11-23','2023-01-10')
 ```
+You can also convert other currencies, such as Japanese Yen and USD
+```
+exchange_currency('JPY','USD','2022-11-23','2023-01-10')
+```
 ## 7.View a quick report on the profit, revenue, ... of a company
 For this report I use the financial statements collected from the website 'Cophieu68', because it is similar to the financial statements provided by securities companies such as VNDirect, SSI.``baocaonhanh(mcp,loai,time)``
 For this report I use the financial statements collected from the website 'Cophieu68', because it is similar to the financial statements provided by securities companies such as VNDirect, SSI.
