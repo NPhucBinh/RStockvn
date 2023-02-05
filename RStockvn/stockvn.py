@@ -379,6 +379,6 @@ def solieu_GDP_vietstock(fromyear,fromQ,toyear,toQ):###HAMGETGDP
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
     return bangls
 
-def get_data_vnindex(number_page):
-    data=cafef.get_data_vnindex(number_page)
+def get_data_history_cafef(symbol,fromdate,todate):
+    data=cafef.get_data_history_cafef(symbol,fromdate,todate)
     return data

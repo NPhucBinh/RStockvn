@@ -151,15 +151,13 @@ You want to get the GDP index from 2nd quarter 2020 to 3rd quarter 2022.
 solieu_GDP_vietstock('2020','2','2022','3')
 ```
 
-## 18.Get VNINDEX price historical data
-To get VNINDEX price historical data, you need to use the function ``get_data_vnidex(number_page)``, ``number_page`` is the number of pages you need to load, each page will return VNINDEX's latest 20-day transaction data.
-When using the get_data_vnindex() function, if you get an error [IndexError](https://github.com/NPhucBinh/RStockvn/blob/main/RStockvn/img/IndexError_list_index_out_of_range.PNG), don't worry. You just need to restart the get_data_vnindex() function again, the cause of this error is that the "User-Agent" on initial launch failed to get the cookies of the websites.
-The return data of this function is taken from websites [Cafef](https://cafef.vn).
+## 18.Get price historical data of CafeF
+To get historical stock price data from [CafeF](https://cafef.vn) websites you need to use the function ``get_data_history_cafef(symbol,fromdate,todate)``. ``symbol`` is the stock symbol you need to get data from, ``fromdate`` is the start date and ``todate`` is the end date.
 
 #### Example
-For example, if you want to get the historical price of VNINDEX in the last 40 trading days, then ``number_page`` is ``2``, 60 days, ``number_page`` is ``3``.
+For example, you want to get the price history of VNINDEX from January 20, 2023 to February 3, 2023
 ```
-get_data_vnidex(2)
+get_data_history_cafef('VNINDEX','2023-01-23','2023-02-03')
 ```
 
 ## Explore more:``historical_price_cp68(day,symbol)``

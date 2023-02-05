@@ -1,3 +1,5 @@
+# Copyright 2023 Nguyen Phuc Binh @ GitHub
+# See LICENSE for details.
 from setuptools import setup, find_packages
 import os
 import codecs
@@ -12,7 +14,7 @@ DS = 'Report Finance of Companies in Vietnamese and macro data - Lấy báo cáo
 #Setting
 setup(
     name='RStockvn',
-    version='1.1.9',
+    version='1.1.93',
     author='NGUYEN PHUC BINH',
     author_email='nguyenphucbinh67@gmail.com',
     description=DS,
