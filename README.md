@@ -1,14 +1,14 @@
-# RStockvn
+# [RStockvn](https://pypi.org/project/RStockvn/)
 Financial statements of companies on the Vietnamese stock exchange
 
 
 # Introduce
 Hi, my name is Nguyen Phuc Binh.
-The reason that I do RStockvn is to support the collection of basic data for analysis.
+The reason that I do [RStockvn](https://pypi.org/project/RStockvn/) is to support the collection of basic data for analysis.
 
 The financial statements that RStockvn collects mainly come from websites: [Cổ phiếu 68](https://www.cophieu68.vn), [Cafef](https://cafef.vn).
 
-For the exchange rate, RStockvn collects at "exchangerate.host" if you have more interest or support for their project you can visit at:[Exchangerate](https://exchangerate.host/#/donate )
+For the exchange rate, RStockvn collects at ["exchangerate.host"](https://exchangerate.host/#/donate) if you have more interest or support for their project you can visit at:[Exchangerate](https://exchangerate.host/#/donate)
 ### From update 1.0.3 onwards, you can used rstockvn to get macro data.
 The figures CPI, FDI, GDP, ... are taken from websites: [Vietstock](https://finance.vietstock.vn/du-lieu-vi-mo)
 
