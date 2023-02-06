@@ -10,8 +10,9 @@ The financial statements that RStockvn collects mainly come from websites: [Cổ
 
 For the exchange rate, RStockvn collects at ["exchangerate.host"](https://exchangerate.host/#/donate) if you have more interest or support for their project you can visit at:[Exchangerate](https://exchangerate.host/#/donate)
 ### From update 1.0.3 onwards, you can used rstockvn to get macro data.
-If you are on the old version and have errors, please update to the new version of RStockvn by: ``pip install --upgrade RStockvn``
 The figures CPI, FDI, GDP, ... are taken from websites: [Vietstock](https://finance.vietstock.vn/du-lieu-vi-mo)
+
+If you are on the old version and have errors, please update to the new version of RStockvn by: ``pip install --upgrade RStockvn``
 
 Also you can refer to the library:'vnstock', written by Mr. Thinh Vu
 # User guide
