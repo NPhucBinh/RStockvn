@@ -5,8 +5,10 @@ import requests
 import requests
 import json
 from bs4 import BeautifulSoup
-import user_agent
-import data_cafef as cafef
+from .user_agent import random_user
+#from . import user_agent
+from . import data_cafef as cafef
+#import data_cafef as cafef
 import datetime as dt
 
 def event_price_cp68(symbol):### HAM XEM LICH SU DIEU CHINH GIA CP
@@ -210,7 +212,7 @@ def baocaonhanh(mcp,loai,time):### Báo Cáo Nhanh
 ###HAM GET DATA VIETSTOCK
 def token():
     urltoken='https://finance.vietstock.vn/du-lieu-vi-mo/53-64/ty-gia-lai-xuat.htm#'
-    head={'User-Agent':user_agent.random_user()}
+    head={'User-Agent':random_user()}
     loadlan1=requests.get(urltoken,headers=head)
     soup=BeautifulSoup(loadlan1.content,'html.parser')
     stoken=soup.body.input
@@ -236,7 +238,7 @@ def getCPI_vietstock(fromdate,todate): ###HAM GET CPI
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,'from':fromdate.month,'to':todate.month,'normTypeID':'52','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
     cov1=dict(ls.json())
@@ -251,7 +253,7 @@ def solieu_sanxuat_congnghiep(fromdate,todate): #HAMSOLIEUSANXUAT
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,
              'from':fromdate.month,'to':todate.month,'normTypeID':'46','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
@@ -267,7 +269,7 @@ def solieu_banle_vietstock(fromdate,todate):###HAMSOLIEUBANLE
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,
              'from':fromdate.month,'to':todate.month,'normTypeID':'47','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
@@ -283,7 +285,7 @@ def solieu_XNK_vietstock(fromdate,todate):###HAMSOLIEUXNK
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,
              'from':fromdate.month,'to':todate.month,'normTypeID':'48','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
@@ -299,7 +301,7 @@ def solieu_FDI_vietstock(fromdate,todate):###HAMSOLIEUVONFDI
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,
              'from':fromdate.month,'to':todate.month,'normTypeID':'50','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
@@ -315,7 +317,7 @@ def tygia_vietstock(fromdate,todate):###HAMGETTYGIAVIETSTOCK
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'1','fromYear':fromdate.year,'toYear':todate.year,'from':tungay,'to':denngay,'normTypeID':'53','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
     cov1=dict(ls.json())
@@ -330,7 +332,7 @@ def solieu_tindung_vietstock(fromdate,todate):###HAMGETDATATINDUNG
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,
              'from':fromdate.month,'to':todate.month,'normTypeID':'51','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
@@ -346,7 +348,7 @@ def laisuat_vietstock(fromdate,todate):###HAMGETLAISUAT
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'1','fromYear':fromdate.year,'toYear':todate.year,'from':tungay,'to':denngay,'normTypeID':'66','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
     cov1=dict(ls.json())
@@ -361,7 +363,7 @@ def solieu_danso_vietstock(fromdate,todate):###HAMGETSOLIEUDANSO
     tungay=str(fromdate.strftime('%Y-%m-%d'))
     denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'4','fromYear':fromdate.year,'toYear':todate.year,'from':tungay,'to':denngay,'normTypeID':'55','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
     cov1=dict(ls.json())
@@ -371,7 +373,7 @@ def solieu_danso_vietstock(fromdate,todate):###HAMGETSOLIEUDANSO
 def solieu_GDP_vietstock(fromyear,fromQ,toyear,toQ):###HAMGETGDP
     asp,rtoken,tken=token()
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
-    header={'User-Agent':user_agent.random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
+    header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'3','fromYear':fromyear,'toYear':toyear,'from':fromQ,'to':toQ,'normTypeID':'43','__RequestVerificationToken': '{}'.format(tken)}
     ls=requests.post(url,headers=header,data=payload)
     cov1=dict(ls.json())

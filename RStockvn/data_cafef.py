@@ -6,20 +6,22 @@ import pandas as pd
 import json
 import random
 from bs4 import BeautifulSoup
-import user_agent
+from .user_agent import random_user
+#from data_rs import user_agent
+from requests.adapters import HTTPAdapter
 
-adapter = HTTPAdapter(max_retries=Retry)
+#adapter = HTTPAdapter(max_retries=Retry)
+
 def cre_user():
-    data=random.choice(user)
+    data=random_user()
     return data
 
-bien_user=cre_user()
 
 url='https://s.cafef.vn/Lich-su-giao-dich-VNINDEX-1.chn'
 
 def cooki(): #hàm lấy giả trị cookie, __VIEWSTATE và __VIEWSTATEGENERATOR
     try:
-        user1=bien_user
+        bien_user=cre_user()
         head={'Accept': '*/*',
         'Accept-Language': 'en-US,en;q=0.9,vi;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
         'Connection': 'keep-alive',
@@ -29,7 +31,7 @@ def cooki(): #hàm lấy giả trị cookie, __VIEWSTATE và __VIEWSTATEGENERATO
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-site',
-        'User-Agent': user1,
+        'User-Agent': bien_user,
         'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',}
@@ -45,7 +47,7 @@ def cooki(): #hàm lấy giả trị cookie, __VIEWSTATE và __VIEWSTATEGENERATO
         cookie=r.cookies.get_dict()
         asp_cookie=cookie['ASP.NET_SessionId']
     except IndexError:
-        user1=cre_user()
+        bien_user=cre_user()
         head={'Accept': '*/*',
         'Accept-Language': 'en-US,en;q=0.9,vi;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
         'Connection': 'keep-alive',
@@ -55,7 +57,7 @@ def cooki(): #hàm lấy giả trị cookie, __VIEWSTATE và __VIEWSTATEGENERATO
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-site',
-        'User-Agent': user1
+        'User-Agent': bien_user,
         'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',}
@@ -70,10 +72,9 @@ def cooki(): #hàm lấy giả trị cookie, __VIEWSTATE và __VIEWSTATEGENERATO
         vsttG=vsttG.replace('"/>','')
         cookie=r.cookies.get_dict()
         asp_cookie=cookie['ASP.NET_SessionId']        
-    return vSTT,vsttG,asp_cookie
+    return vSTT,vsttG,asp_cookie,bien_user
 
-def headers(asp_cookie): #hàm tạo header
-    user1=bien_user
+def headers(asp_cookie,bien_user): #hàm tạo header
     header = {
         'Accept': '*/*',
         'Accept-Language': 'en-US,en;q=0.9,vi;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
@@ -84,7 +85,7 @@ def headers(asp_cookie): #hàm tạo header
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-site',
-        'User-Agent': user1,
+        'User-Agent': bien_user,
         'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
@@ -96,8 +97,8 @@ def data_vnindex(symbol,number_page,fdate,tdate): #hàm xử lý data load về
     number=int(number_page)
     list_payload=[]
     for num in range(1,number):
-        vSTT,vsttG,asp_cookie=cooki()
-        header1=headers(asp_cookie)
+        vSTT,vsttG,asp_cookie,bien_user=cooki()
+        header1=headers(asp_cookie,bien_user)
         payload={'ctl00$ContentPlaceHolder1$scriptmanager':'ctl00$ContentPlaceHolder1$ctl03$panelAjax|ctl00$ContentPlaceHolder1$ctl03$pager2',
                   'ctl00$ContentPlaceHolder1$ctl03$txtKeyword': symbol,
                   'tl00$ContentPlaceHolder1$ctl03$dpkTradeDate1$txtDatePicker':tdate,
