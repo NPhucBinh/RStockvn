@@ -210,26 +210,6 @@ def baocaonhanh(mcp,loai,time):### Báo Cáo Nhanh
         print('Hiện chưa có mẫu báo cáo nhanh cho các Ngành Tài Chính, sẽ bổ sung sau.')
         
 ###HAM GET DATA VIETSTOCK
-def token():
-    urltoken='https://finance.vietstock.vn/du-lieu-vi-mo/53-64/ty-gia-lai-xuat.htm#'
-    head={'User-Agent':random_user()}
-    loadlan1=requests.get(urltoken,headers=head)
-    soup=BeautifulSoup(loadlan1.content,'html.parser')
-    stoken=soup.body.input
-    stoken=str(stoken)
-    listtoken=stoken.split()
-    xre=[]
-    for i in listtoken[1:]:
-        i=i.replace('=',':')
-        i=i.replace('"','')
-        xre.append(i)
-    token=str(xre[2])
-    token=token.replace('value:','')
-    token=token.replace('/>','')
-    dic=dict(loadlan1.cookies.get_dict())
-    revtoken=dic['__RequestVerificationToken']
-    revasp=dic['ASP.NET_SessionId']
-    return revasp, revtoken, token
 
 def getCPI_vietstock(fromdate,todate): ###HAM GET CPI
     asp,rtoken,tken=token()
