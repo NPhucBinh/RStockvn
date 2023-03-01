@@ -1,5 +1,11 @@
 # Copyright 2023 Nguyen Phuc Binh @ GitHub
 # See LICENSE for details.
+__version__ = "2.1.5"
+__author__ ="Nguyen Phuc Binh"
+__copyright__ = "Copyright 2023, Nguyen Phuc Binh"
+__license__ = "MIT"
+__email__ = "nguyenphucbinh67@gmail.com"
+__website__ = "https://github.com/NPhucBinh"
 import datetime as dt
 import requests
 import pandas as pd
@@ -9,8 +15,6 @@ from bs4 import BeautifulSoup
 from .user_agent import random_user
 #from data_rs import user_agent
 from requests.adapters import HTTPAdapter
-
-#adapter = HTTPAdapter(max_retries=Retry)
 
 def cre_user():
     data=random_user()

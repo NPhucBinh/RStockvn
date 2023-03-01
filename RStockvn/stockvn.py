@@ -1,5 +1,11 @@
 # Copyright 2023 Nguyen Phuc Binh @ GitHub
 # See LICENSE for details.
+__version__ = "2.1.5"
+__author__ ="Nguyen Phuc Binh"
+__copyright__ = "Copyright 2023, Nguyen Phuc Binh"
+__license__ = "MIT"
+__email__ = "nguyenphucbinh67@gmail.com"
+__website__ = "https://github.com/NPhucBinh"
 import pandas as pd
 import requests
 import requests

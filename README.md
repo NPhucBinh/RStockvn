@@ -163,7 +163,7 @@ To get historical stock price data from [CafeF](https://cafef.vn) websites you n
 #### Example
 For example, you want to get the price history of VNINDEX from January 20, 2023 to February 3, 2023
 ```
-get_data_history_cafef('VNINDEX','2023-01-23','2023-02-03')
+get_data_history_cafef('VNINDEX','01/01/2022','01/02/2023')
 ```
 
 ## Explore more:``historical_price_cp68(day,symbol)``
