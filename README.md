@@ -15,6 +15,14 @@ The figures CPI, FDI, GDP, ... are taken from websites: [Vietstock](https://fina
 If you are on the old version and have errors, please update to the new version of RStockvn by: ``pip install --upgrade RStockvn``
 
 Also you can refer to the library:'vnstock', written by Mr. Thinh Vu
+
+#Ghi chú: 
+Xin chào, tôi nhận được một số mail phản hồi từ một trong các website mà thư viện RStockvn đang thu thập thông tin. 
+Nội dung các mail đó nói về việc thông tin họ được sử dụng không phù hợp, vì vậy khi các bạn sử dụng thư viện này để lấy thông tin cho các bài tiểu luận, luận án, viết báo,...
+Vui lòng ghi rõ nguồn của thông tin mà bạn lấy, cảm ơn.
+~~~ Hãy tôn trọng chính chủ và tác giả ~~~
+Nếu có vấn đề hay cần chia sẻ ý kiến, vui lòng liên hệ qua mail: nguyenphucbinh67@gmail.com
+
 # User guide
 First you need to install RStockvn by:
 ``pip install RStockvn`` or ``conda install RStockvn``

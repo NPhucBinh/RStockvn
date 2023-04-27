@@ -14,7 +14,7 @@ DS = 'Report Finance of Companies in Vietnamese and macro data - Lấy báo cáo
 #Setting
 setup(
     name='RStockvn',
-    version='2.1.2',
+    version='2.1.8',
     author='NGUYEN PHUC BINH',
     author_email='nguyenphucbinh67@gmail.com',
     description=DS,
@@ -22,8 +22,8 @@ setup(
     long_description_content_type='text/markdown',
     packages=find_packages(),
     url="https://github.com/NPhucBinh/RStockvn",
-    install_requires=['pandas','requests','jsonschema','bs4'],
-    keywords=['RStockvn','rstockvn','report stock vn','báo cáo tài chính việt nam','lấy báo cáo tài chính việt nam bằng python'],
+    install_requires=['pandas','requests','jsonschema','bs4','selenium','undetected_chromedriver'],
+    keywords=['RStockvn','rpv','rstockvn','report stock vn','báo cáo tài chính việt nam','lấy báo cáo tài chính việt nam bằng python'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

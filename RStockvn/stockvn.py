@@ -1,28 +1,27 @@
 # Copyright 2023 Nguyen Phuc Binh @ GitHub
 # See LICENSE for details.
-__version__ = "2.1.5"
+__version__ = "2.1.6"
 __author__ ="Nguyen Phuc Binh"
 __copyright__ = "Copyright 2023, Nguyen Phuc Binh"
 __license__ = "MIT"
 __email__ = "nguyenphucbinh67@gmail.com"
 __website__ = "https://github.com/NPhucBinh"
+
 import pandas as pd
 import requests
 import requests
 import json
 from bs4 import BeautifulSoup
 from .user_agent import random_user
-#from . import user_agent
-from . import data_cafef as cafef
-#import data_cafef as cafef
+from .cafef_test import browser_get_data
 import datetime as dt
 
-def event_price_cp68(symbol):### HAM XEM LICH SU DIEU CHINH GIA CP
+def event_price_cp68(symbol):### HAM XEM LICH SU DIEU CHINH GIA CP 1
     df=pd.read_html('https://www.cophieu68.vn/event_calc.php?id={}'.format(symbol))
     df=df[1]
     return df
 
-def historical_price_cp68(day,symbol):### HAM XEM LICH SU GIA CP
+def historical_price_cp68(day,symbol):### HAM XEM LICH SU GIA CP 2
     data=[]
     if day==100:
         i=1
@@ -60,7 +59,7 @@ def historical_price_cp68(day,symbol):### HAM XEM LICH SU GIA CP
             df3= pd.concat(data, ignore_index=True)
     return df3
 
-def report_finance_cp68(symbol,reporty,timely): ### HÀM LẤY BÁO CÁO TÀI CHÍNH TỪ COPHIEU68.VN
+def report_finance_cp68(symbol,reporty,timely): ### HÀM LẤY BÁO CÁO TÀI CHÍNH TỪ COPHIEU68.VN 3
     symbol=str(symbol.upper())
     timely=str(timely.upper())
     reporty=str(reporty.upper())
@@ -94,7 +93,7 @@ def report_finance_cp68(symbol,reporty,timely): ### HÀM LẤY BÁO CÁO TÀI CH
         ls.extend(e)
         return data[ls]
 
-def report_finance_cf(symbol,report,year,timely): ### HAM LAY BAO CAO TAI CHINH TU TRANG CAFEF###
+def report_finance_cf(symbol,report,year,timely): ### HAM LAY BAO CAO TAI CHINH TU TRANG CAFEF 4
     symbol=symbol.upper()
     report=report.upper()
     year=int(year)
@@ -130,7 +129,7 @@ def report_finance_cf(symbol,report,year,timely): ### HAM LAY BAO CAO TAI CHINH 
     df.drop('Tăng trưởng',axis=1,inplace=True)
     return df
 
-def info_company(symbol): ### HAM XEM THONG TIN CO BAN
+def info_company(symbol): ### HAM XEM THONG TIN CO BAN 5
     url_cp68='https://www.cophieu68.vn/profilesymbol.php?id={}'.format(symbol)
     re=pd.read_html(url_cp68)
     a=re[1].values.tolist()
@@ -139,7 +138,7 @@ def info_company(symbol): ### HAM XEM THONG TIN CO BAN
     h=h.drop(0)
     return h
 
-def trade_internal(symbol):### HAM GIAO DICH MUA BAN NOI BO
+def trade_internal(symbol):### HAM GIAO DICH MUA BAN NOI BO 6
     url='https://www.cophieu68.vn/internal_trade.php?id={}'.format(symbol)
     df=pd.read_html(url)
     a=df[1].iloc[:1].values.tolist()
@@ -147,7 +146,7 @@ def trade_internal(symbol):### HAM GIAO DICH MUA BAN NOI BO
     df[1].drop(0)
     return df[1]
 
-def exchange_currency(current,cover_current,from_date,to_date): ###HAM LAY TY GIA
+def exchange_currency(current,cover_current,from_date,to_date): ###HAM LAY TY GIA 7
     url = 'https://api.exchangerate.host/timeseries?'
     payload={'base':current,"start_date":from_date,'end_date':to_date}
     response = requests.get(url, params=payload)
@@ -165,7 +164,7 @@ def exchange_currency(current,cover_current,from_date,to_date): ###HAM LAY TY GI
         d=a.sort_index(ascending=False)
     return d
 
-def baocaonhanh(mcp,loai,time):### Báo Cáo Nhanh
+def baocaonhanh(mcp,loai,time):### Báo Cáo Nhanh 8
     mcp=mcp.upper()
     loai=loai.upper()
     tim=time.upper()
@@ -215,9 +214,29 @@ def baocaonhanh(mcp,loai,time):### Báo Cáo Nhanh
     elif loai == 'TC':
         print('Hiện chưa có mẫu báo cáo nhanh cho các Ngành Tài Chính, sẽ bổ sung sau.')
         
-###HAM GET DATA VIETSTOCK
+###HAM GET DATA VIETSTOCK 
+def token():
+    urltoken='https://finance.vietstock.vn/du-lieu-vi-mo/53-64/ty-gia-lai-xuat.htm#'
+    head={'User-Agent':random_user()}
+    loadlan1=requests.get(urltoken,headers=head)
+    soup=BeautifulSoup(loadlan1.content,'html.parser')
+    stoken=soup.body.input
+    stoken=str(stoken)
+    listtoken=stoken.split()
+    xre=[]
+    for i in listtoken[1:]:
+        i=i.replace('=',':')
+        i=i.replace('"','')
+        xre.append(i)
+    token=str(xre[2])
+    token=token.replace('value:','')
+    token=token.replace('/>','')
+    dic=dict(loadlan1.cookies.get_dict())
+    revtoken=dic['__RequestVerificationToken']
+    revasp=dic['ASP.NET_SessionId']
+    return revasp, revtoken, token
 
-def getCPI_vietstock(fromdate,todate): ###HAM GET CPI
+def getCPI_vietstock(fromdate,todate): ###HAM GET CPI 10
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
@@ -232,7 +251,7 @@ def getCPI_vietstock(fromdate,todate): ###HAM GET CPI
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
     return bangls
 
-def solieu_sanxuat_congnghiep(fromdate,todate): #HAMSOLIEUSANXUAT
+def solieu_sanxuat_congnghiep(fromdate,todate): #HAMSOLIEUSANXUAT 11
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
@@ -248,7 +267,7 @@ def solieu_sanxuat_congnghiep(fromdate,todate): #HAMSOLIEUSANXUAT
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID','FromSource'], axis=1, inplace=True)
     return bangls
 
-def solieu_banle_vietstock(fromdate,todate):###HAMSOLIEUBANLE
+def solieu_banle_vietstock(fromdate,todate):###HAMSOLIEUBANLE 12 
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
@@ -264,7 +283,7 @@ def solieu_banle_vietstock(fromdate,todate):###HAMSOLIEUBANLE
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID',], axis=1, inplace=True)
     return bangls
 
-def solieu_XNK_vietstock(fromdate,todate):###HAMSOLIEUXNK
+def solieu_XNK_vietstock(fromdate,todate):###HAMSOLIEUXNK 13
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
@@ -280,12 +299,10 @@ def solieu_XNK_vietstock(fromdate,todate):###HAMSOLIEUXNK
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID',], axis=1, inplace=True)
     return bangls
 
-def solieu_FDI_vietstock(fromdate,todate):###HAMSOLIEUVONFDI
+def solieu_FDI_vietstock(fromdate,todate):###HAMSOLIEUVONFDI 14
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
-    tungay=str(fromdate.strftime('%Y-%m-%d'))
-    denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
     header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,
@@ -296,7 +313,7 @@ def solieu_FDI_vietstock(fromdate,todate):###HAMSOLIEUVONFDI
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID',], axis=1, inplace=True)
     return bangls
 
-def tygia_vietstock(fromdate,todate):###HAMGETTYGIAVIETSTOCK
+def tygia_vietstock(fromdate,todate):###HAMGETTYGIAVIETSTOCK 15
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
@@ -311,12 +328,10 @@ def tygia_vietstock(fromdate,todate):###HAMGETTYGIAVIETSTOCK
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
     return bangls
 
-def solieu_tindung_vietstock(fromdate,todate):###HAMGETDATATINDUNG
+def solieu_tindung_vietstock(fromdate,todate):###HAMGETDATATINDUNG 16
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
-    tungay=str(fromdate.strftime('%Y-%m-%d'))
-    denngay=str(todate.strftime('%Y-%m-%d'))
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
     header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
     payload={'type':'2','fromYear':fromdate.year,'toYear':todate.year,
@@ -327,7 +342,7 @@ def solieu_tindung_vietstock(fromdate,todate):###HAMGETDATATINDUNG
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID',], axis=1, inplace=True)
     return bangls
 
-def laisuat_vietstock(fromdate,todate):###HAMGETLAISUAT
+def laisuat_vietstock(fromdate,todate):###HAMGETLAISUAT 17
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
@@ -340,9 +355,10 @@ def laisuat_vietstock(fromdate,todate):###HAMGETLAISUAT
     cov1=dict(ls.json())
     bangls=pd.DataFrame(cov1['data'])
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
-    return bangls
+    df_bang=bangls.pivot(index='ReportTime',columns='NormName')
+    return df_bang
 
-def solieu_danso_vietstock(fromdate,todate):###HAMGETSOLIEUDANSO
+def solieu_danso_vietstock(fromdate,todate):###HAMGETSOLIEUDANSO 18
     asp,rtoken,tken=token()
     fromdate=pd.to_datetime(fromdate)
     todate=pd.to_datetime(todate)
@@ -356,7 +372,7 @@ def solieu_danso_vietstock(fromdate,todate):###HAMGETSOLIEUDANSO
     bangls=pd.DataFrame(cov1['data'])
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
     return bangls
-def solieu_GDP_vietstock(fromyear,fromQ,toyear,toQ):###HAMGETGDP
+def solieu_GDP_vietstock(fromyear,fromQ,toyear,toQ):###HAMGETGDP 19
     asp,rtoken,tken=token()
     url='https://finance.vietstock.vn/data/reportdatatopbynormtype'
     header={'User-Agent':random_user(),'Cookie': 'language=vi-VN; ASP.NET_SessionId={}; __RequestVerificationToken={}; Theme=Light; _ga=GA1.2.521754408.1675222361; _gid=GA1.2.2063415792.1675222361; AnonymousNotification='.format(asp,rtoken)}
@@ -367,6 +383,6 @@ def solieu_GDP_vietstock(fromyear,fromQ,toyear,toQ):###HAMGETGDP
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
     return bangls
 
-def get_data_history_cafef(symbol,fromdate,todate):
-    data=cafef.get_data_history_cafef(symbol,fromdate,todate)
+def get_data_history_cafef(symbol,fromdate,todate):### 20
+    data=browser_get_data(symbol,fromdate,todate).getdata()
     return data
