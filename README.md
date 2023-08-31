@@ -6,7 +6,7 @@ Financial statements of companies on the Vietnamese stock exchange
 Hi, my name is Nguyen Phuc Binh.
 The reason that I do [RStockvn](https://pypi.org/project/RStockvn/) is to support the collection of basic data for analysis.
 
-The financial statements that RStockvn collects mainly come from websites: [Cổ phiếu 68](https://www.cophieu68.vn), [Cafef](https://cafef.vn).
+The financial statements that RStockvn collects mainly come from websites: [Cafef](https://cafef.vn).
 
 For the exchange rate, RStockvn collects at ["exchangerate.host"](https://exchangerate.host/#/donate) if you have more interest or support for their project you can visit at:[Exchangerate](https://exchangerate.host/#/donate)
 ### From update 1.0.3 onwards, you can used rstockvn to get macro data.
@@ -16,37 +16,16 @@ If you are on the old version and have errors, please update to the new version 
 
 Also you can refer to the library:'vnstock', written by Mr. Thinh Vu
 
-#Ghi chú: 
-Xin chào, tôi nhận được một số mail phản hồi từ một trong các website mà thư viện RStockvn đang thu thập thông tin. 
-Nội dung các mail đó nói về việc thông tin họ được sử dụng không phù hợp, vì vậy khi các bạn sử dụng thư viện này để lấy thông tin cho các bài tiểu luận, luận án, viết báo,...
-Vui lòng ghi rõ nguồn của thông tin mà bạn lấy, cảm ơn.
-~~~ Hãy tôn trọng chính chủ và tác giả ~~~
-Nếu có vấn đề hay cần chia sẻ ý kiến, vui lòng liên hệ qua mail: nguyenphucbinh67@gmail.com
+## Thông báo hiện các hàm lấy dữ liệu từ Cophieu68 đã bị xóa khỏi [RStockvn](https://pypi.org/project/RStockvn/) do không còn hoạt động được. Thời gian tới sẽ được cập nhật sau.
 
 # User guide
 First you need to install RStockvn by:
 ``pip install RStockvn`` or ``conda install RStockvn``
 To use you need to: ``import RStockvn as rpv`` or ``from RStockvn import *``
 
-## 1.Function to view stock adjusted price history
-This function will return the adjusted price history of the ticker, from dividend events.
-``
-event_price_cp68(symbol)
-``
-```
-rpv.event_price_cp68('HSG')
-```
-## 2.Function retrieves financial statements of stock tickers from websites: 'Cophieu68.vn'
-To use this function you need to do the following:
-``report_finance_cp68(symbol,reporty,timely)``
-
-Here `symbol` is stock ticker, reporty corresponds to the following options: ``'CDKT' - BalanceSheet``,``'KQKD' - Business results``.And `timely` corresponds to the choice: `'Year' - year` or `'quy' - quarter.`
-#### Example
-```
-rpv.report_finance_cp68('ACB','cdkt','quy')
-```
 
 ## 3.Function retrieves financial statements of stock tickers from websites: 'Cafef.vn'
+
 ``report_finance_cf(symbol,report,year,timely)``
 This function is similar to x except with some differences:
 'report' will have the following options: `'CDKT' - BalanceSheet`, `'KQKD' - Business results`, `'CFD' - Direct Cash Flows`, `'CF' - Indirect Cash Flows`. `year` corresponds to the reporting datum you want to get. And `timely` corresponds to the choice: `'Year' - year` or `'quy' - quarter.`
@@ -55,18 +34,6 @@ This function is similar to x except with some differences:
 rpv.report_finance_cf('nkg','cfd','2022','year')
 ```
 
-## 4.Function used to view company information
-``info_company(symbol)``
-#### Example
-```
-rpv.info_company('HSG')
-```
-## 5.View insider trading transactions
-``trade_internal(symbol)``
-#### Example
-```
-rpv.trade_internal('ACB')
-```
 ## 6.View exchange rate change history
 At the present time when accessing "exchangerate.host" can only get the history of exchange rates within the last 9 months.``exchange_currency(current,cover_current,from_date,to_date)``
 #### Example

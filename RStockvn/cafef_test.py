@@ -16,12 +16,16 @@ import time
 class browser_get_data():
     
     def __init__(self,mck,fromdate,todate):
+        from selenium import webdriver
+        from webdriver_manager.chrome import ChromeDriverManager
+        driver_manager = ChromeDriverManager()
+        service = driver_manager.install()
         from selenium.webdriver.chrome.options import Options
         from .user_agent import random_user
         self.useragent=random_user()
-        self.url='https://s.cafef.vn/Lich-su-giao-dich-VNINDEX-1.chn#data'
+        self.url='https://s.cafef.vn/lich-su-giao-dich-symbol-vnindex/trang-1-0-tab-1.chn'
         self.opt=Options()
-        #self.opt.add_argument('--headless')
+        self.opt.add_argument('--headless')
         self.opt.add_argument('--dark-mode-settings')
         self.opt.add_argument("--incognito")
         self.opt.add_argument('--disable-gpu')
@@ -51,9 +55,9 @@ class browser_get_data():
                 break
         data=pd.concat(self.lis)
         data.drop(['Thay đổi (+/-%).1'],axis=1,inplace=True)
-        data.rename(columns={'KL':'KLGD khớp lệnh','GT':'GTGD khớp lệnh','KL.1':'KLGD thỏa thuận','GT.1':'GTGD thỏa thuận'}, inplace=True)
+        data.rename(columns={'GD khớp lệnh':'KLGD khớp lệnh','GD khớp lệnh.1':'GTGD khớp lệnh','GD thỏa thuận':'KLGD thỏa thuận','GD thỏa thuận.1':'GTGD thỏa thuận'}, inplace=True)
         self.close()
-        return data.reset_index(drop=True)
+        return data.set_index('Ngày')
     
     def dataframe(self):
         import pandas as pd
@@ -61,6 +65,5 @@ class browser_get_data():
         data=pd.DataFrame(df[2])
         data=data.drop(index=0)
         return data
-    
     def close(self):
         self.br.quit()

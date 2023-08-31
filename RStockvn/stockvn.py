@@ -16,135 +16,43 @@ from .user_agent import random_user
 from .cafef_test import browser_get_data
 import datetime as dt
 
-def event_price_cp68(symbol):### HAM XEM LICH SU DIEU CHINH GIA CP 1
-    df=pd.read_html('https://www.cophieu68.vn/event_calc.php?id={}'.format(symbol))
-    df=df[1]
-    return df
-
-def historical_price_cp68(day,symbol):### HAM XEM LICH SU GIA CP 2
-    data=[]
-    if day==100:
-        i=1
-        df=pd.read_html('https://www.cophieu68.vn/historyprice.php?currentPage={}&id={}'.format(i,symbol))
-        df3=pd.DataFrame(data=df[1])
-    elif day==200:
-        for i in list(range(1,3)):
-            df=pd.read_html('https://www.cophieu68.vn/historyprice.php?currentPage={}&id={}'.format(i,symbol))
-            df1=pd.DataFrame(data=df[1])
-            data.append(df1)
-            df3= pd.concat(data, ignore_index=True)
-    elif day==300:
-        for i in list(range(1,4)):
-            df=pd.read_html('https://www.cophieu68.vn/historyprice.php?currentPage={}&id={}'.format(i,symbol),header=0)
-            df1=pd.DataFrame(data=df[1])
-            data.append(df1)
-            df3= pd.concat(data, ignore_index=True)
-    elif day==400:
-        for i in list(range(1,5)):
-            df=pd.read_html('https://www.cophieu68.vn/historyprice.php?currentPage={}&id={}'.format(i,symbol),header=0)
-            df1=pd.DataFrame(data=df[1])
-            data.append(df1)
-            df3= pd.concat(data, ignore_index=True)
-    elif day==500:
-        for i in list(range(1,6)):
-            df=pd.read_html('https://www.cophieu68.vn/historyprice.php?currentPage={}&id={}'.format(i,symbol),header=0)
-            df1=pd.DataFrame(data=df[1])
-            data.append(df1)
-            df3= pd.concat(data, ignore_index=True)
-    elif day=='ALL':
-        for i in list(range(1,100)):
-            df=pd.read_html('https://www.cophieu68.vn/historyprice.php?currentPage={}&id={}'.format(i,symbol),header=0)
-            df1=pd.DataFrame(data=df[1])
-            data.append(df1)
-            df3= pd.concat(data, ignore_index=True)
-    return df3
-
-def report_finance_cp68(symbol,reporty,timely): ### HÀM LẤY BÁO CÁO TÀI CHÍNH TỪ COPHIEU68.VN 3
-    symbol=str(symbol.upper())
-    timely=str(timely.upper())
-    reporty=str(reporty.upper())
-    x=[]
-    if reporty =="CDKT":
-        if timely=="YEAR":
-            x="year=-1"
-        elif timely=="QUY":
-            x=""
-        df =pd.read_html('https://www.cophieu68.vn/financial_balance.php?id={}&{}&view=bs'.format(symbol,x),header=0)
-        data=df[1]
-        cols=data.columns.tolist()
-        e=cols[1:]
-        e.reverse()
-        ls=[]
-        ls.append(cols[0])
-        ls.extend(e)
-        return data[ls]
-    elif reporty =="KQKD":
-        if timely =="YEAR":
-            x= "year=-1"
-        elif timely=="QUY":
-            x=""
-        df=pd.read_html("https://www.cophieu68.vn/financial_income.php?id={}&{}&view=ist".format(symbol,x),header=0)
-        data=df[1]
-        cols=data.columns.tolist()
-        e=cols[1:]
-        e.reverse()
-        ls=[]
-        ls.append(cols[0])
-        ls.extend(e)
-        return data[ls]
 
 def report_finance_cf(symbol,report,year,timely): ### HAM LAY BAO CAO TAI CHINH TU TRANG CAFEF 4
     symbol=symbol.upper()
     report=report.upper()
     year=int(year)
     timely= timely.upper()
-    if report =="CDKT":
+    if report =="CDKT" or 'BS' or 'BALANCESHEET':
         x='BSheet'
         if timely=='YEAR':
             y='0'
-        elif timely=='QUY':
+        elif timely=='QUY' or 'QUARTER':
             y='4'
-    elif report=='KQKD':
+    elif report=='KQKD' or 'P&L':
         x='IncSta'
         if timely=='YEAR':
             y='0'
-        elif timely=='QUY':
+        elif timely=='QUY' or 'QUARTER':
             y='4'
     elif report=="CFD":
         x='CashFlowDirect'
         if timely=='YEAR':
             y='0'
-        elif timely=='QUY':
+        elif timely=='QUY' or 'QUARTER':
             y='4'
     elif report=="CF":
         x='CashFlow'
         if timely=='YEAR':
             y='0'
-        elif timely=='QUY':
+        elif timely=='QUY' or 'QUARTER':
             y='4'
     repl=pd.read_html('https://s.cafef.vn/BaoCaoTaiChinh.aspx?symbol={}&type={}&year={}&quarter={}'.format(symbol,x,year,y))
-    lst=repl[2].values.tolist()
-    df=pd.DataFrame(repl[3])
+    lst=repl[-2].values.tolist()
+    df=pd.DataFrame(repl[-1])
     df.columns=list(lst[0])
     df.drop('Tăng trưởng',axis=1,inplace=True)
     return df
 
-def info_company(symbol): ### HAM XEM THONG TIN CO BAN 5
-    url_cp68='https://www.cophieu68.vn/profilesymbol.php?id={}'.format(symbol)
-    re=pd.read_html(url_cp68)
-    a=re[1].values.tolist()
-    h=pd.concat([re[1],re[2]])
-    h.columns=(list(a[0]))
-    h=h.drop(0)
-    return h
-
-def trade_internal(symbol):### HAM GIAO DICH MUA BAN NOI BO 6
-    url='https://www.cophieu68.vn/internal_trade.php?id={}'.format(symbol)
-    df=pd.read_html(url)
-    a=df[1].iloc[:1].values.tolist()
-    df[1].columns=list(a[0])
-    df[1].drop(0)
-    return df[1]
 
 def exchange_currency(current,cover_current,from_date,to_date): ###HAM LAY TY GIA 7
     url = 'https://api.exchangerate.host/timeseries?'
@@ -355,7 +263,9 @@ def laisuat_vietstock(fromdate,todate):###HAMGETLAISUAT 17
     cov1=dict(ls.json())
     bangls=pd.DataFrame(cov1['data'])
     bangls.drop(['ReportDataID','TermID','TermYear','TernDay','NormID','GroupName','CssStyle','NormTypeID','NormGroupID'], axis=1, inplace=True)
-    df_bang=bangls.pivot(index='ReportTime',columns='NormName')
+    df_bang=bangls.pivot(index='ReportTime',columns='NormName',values='NormValue')
+    df_bang.reset_index(inplace=True)
+    df_bang.columns.name=None
     return df_bang
 
 def solieu_danso_vietstock(fromdate,todate):###HAMGETSOLIEUDANSO 18

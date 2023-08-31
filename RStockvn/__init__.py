@@ -1,6 +1,6 @@
 # Copyright 2023 Nguyen Phuc Binh @ GitHub
 # See LICENSE for details.
-__version__ = "2.1.6"
+__version__ = "2.1.8"
 __author__ ="Nguyen Phuc Binh"
 __copyright__ = "Copyright 2023, Nguyen Phuc Binh"
 __license__ = "MIT"
