@@ -132,7 +132,7 @@ rpv.solieu_GDP_vietstock('2020','2','2022','3')
 # Conclusion
 If you find this project useful, you can support us via the QR code below to help maintain and develop the project.
 
-![QR Code for Donations](./data/donate_qr.jpg)
+![QR Code for Donations](./data/qr_paypal.png)
 
 You can contact via email: nguyenphucbinh67@gmail.com
 
