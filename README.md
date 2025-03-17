@@ -131,6 +131,7 @@ rpv.solieu_GDP_vietstock('2020','2','2022','3')
 
 # Conclusion
 If you find this project useful, you can support us via the QR code below to help maintain and develop the project.
+QR Code PayPal
 
 ![QR Code for Donations](./data/qr_paypal.png)
 
@@ -269,6 +270,7 @@ rpv.solieu_GDP_vietstock('2020','2','2022','3')
 
 # Lời kết
 Nếu bạn thấy dự án này hữu ích, bạn có thể ủng hộ chúng tôi qua mã QR dưới đây để giúp duy trì và phát triển dự án.
+QR Code Ban Viet Bank
 
 ![QR Code for Donations](./data/donate_qr.jpg)
 
